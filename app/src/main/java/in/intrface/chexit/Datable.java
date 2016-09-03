@@ -3,6 +3,8 @@ package in.intrface.chexit;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +35,10 @@ public class Datable extends AppCompatActivity {
     ChildEventListener userListner;
     EditText nameIn;
     Button addUserBut;
-
+    private RecyclerView mUserListBox;
+    private UserListAdapter userListAdapter;
+    private int count;
+    private  String afterid;
 
 
     @Override
@@ -47,6 +52,12 @@ public class Datable extends AppCompatActivity {
 
         tester = (TextView) findViewById(R.id.tester);
         nameIn = (EditText) findViewById(R.id.name_in);
+        mUserListBox = (RecyclerView) findViewById(R.id.user_list_box) ;
+        userListAdapter = new UserListAdapter(Datable.this, users);
+        mUserListBox.setAdapter(userListAdapter);
+        final LinearLayoutManager llm = new LinearLayoutManager(this);
+        mUserListBox.setLayoutManager(llm);
+
 
         userListner = new ChildEventListener() {
             @Override
@@ -55,7 +66,9 @@ public class Datable extends AppCompatActivity {
 
                 users.add(usr);
                 tester.setText(String.valueOf(users.size()));
-
+                userListAdapter = new UserListAdapter(Datable.this, users);
+                //mUserListBox.setAdapter(userListAdapter);
+                userListAdapter.refresh();
             }
 
             @Override
@@ -83,7 +96,7 @@ public class Datable extends AppCompatActivity {
 
 
 
-        //add.newUser("DigVijay", "zero");
+        //add.newUser("KhunKhar Singh", "zero");
 
 
 
