@@ -7,7 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="in.intrface.chexit.MainActivity">
+    tools:context="in.intrface.chexit.MainActivity"
+    android:id="@+id/mainActivityBox"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,38 +17,45 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <TextView
-            android:id="@+id/displayPad"
+
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"
+            >
+            <TextView
+                android:id="@+id/displayPad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chexit"
+                android:textSize="40dp"
+                android:textColor="@color/chexitLogo"
+                android:layout_gravity="center"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <com.google.android.gms.common.SignInButton
             android:id="@+id/sign_in_google"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
 
         <Button
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_out"
-            android:id="@+id/signOut" />
-
-        <TextView
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Status : ? "
-            android:id="@+id/lastUserIndicator"
-            android:layout_weight="0.04" />
-
-        <Button
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:text="Camera"
-            android:id="@+id/cameraIgnitor" />
-
+            android:text="Sign Out"
+            android:id="@+id/sign_out"
+            android:layout_gravity="center_horizontal" />
 
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

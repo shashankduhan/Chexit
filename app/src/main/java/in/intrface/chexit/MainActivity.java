@@ -2,14 +2,18 @@ package in.intrface.chexit;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -46,6 +50,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         GoogleSignInOptions googleOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -60,16 +68,23 @@ public class MainActivity extends AppCompatActivity{
         googleSignIn = (SignInButton) findViewById(R.id.sign_in_google);
         googleSignIn.setOnClickListener(mrSocket);
 
-        signOutButton = (Button) findViewById(R.id.signOut);
+        signOutButton = (Button) findViewById(R.id.sign_out);
         signOutButton.setOnClickListener(mrSocket);
         signOutButton.setVisibility(View.INVISIBLE);
 
-        cameraIgnitor = (Button) findViewById(R.id.cameraIgnitor);
-        cameraIgnitor.setOnClickListener(mrSocket);
+        //cameraIgnitor = (Button) findViewById(R.id.cameraIgnitor);
+        //cameraIgnitor.setOnClickListener(mrSocket);
 
-        lastUserIndicator = (TextView) findViewById(R.id.lastUserIndicator);
+        //lastUserIndicator = (TextView) findViewById(R.id.lastUserIndicator);
 
         displayBoard = (TextView) findViewById(R.id.displayPad);
+
+        ShimmerFrameLayout container =
+                (ShimmerFrameLayout) findViewById(R.id.shimmer_view_container);
+        container.setDuration(2000);
+        container.setAutoStart(true);
+
+
 
 
     }
@@ -86,7 +101,7 @@ public class MainActivity extends AppCompatActivity{
     public void onStop() {
         super.onStop();
         if(loggedin){
-            mrFirebase.lastUserRef.setValue("false");
+            //mrFirebase.lastUserRef.setValue("false");
         }
         if (mrFirebase.getAuthStateListener() != null) {
             mrFirebase.getAuth().removeAuthStateListener(mrFirebase.getAuthStateListener());
@@ -147,6 +162,9 @@ public class MainActivity extends AppCompatActivity{
                             mrFirebase.accountSetup();
                             googleSignIn.setVisibility(View.INVISIBLE);
                             signOutButton.setVisibility(View.VISIBLE);
+                            Intent datable = new Intent(getApplicationContext(), Datable.class);
+                            startActivity(datable);
+
                         }
                     }
                 });

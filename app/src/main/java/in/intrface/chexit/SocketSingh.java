@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 
 /**
- * Created by Abhi on 1/09/16.
+ * Created by Shashank Duhan on 1/09/16.
  */
 public class SocketSingh implements View.OnClickListener {
     GoogleSignIn googleGuy;
@@ -28,12 +28,10 @@ public class SocketSingh implements View.OnClickListener {
                 Log.d(TAG, "onClick: ");
                 googleGuy.googleSignIn();
                 break;
-            case R.id.signOut:
+            case R.id.sign_out:
                 fireBaseGuy.signOut();
                 break;
-            case R.id.cameraIgnitor:
-                mainActivityGuy.newCameraActivity();
-                break;
+
         }
     }
 }

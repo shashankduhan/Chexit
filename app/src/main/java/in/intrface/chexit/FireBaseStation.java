@@ -34,7 +34,7 @@ public class FireBaseStation {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     public static FirebaseUser user;
-    DatabaseReference dbRef;
+    public static DatabaseReference dbRef;
     DatabaseReference lastUserRef;
     private static final String TAG = "firebase_signin";
 
@@ -68,10 +68,7 @@ public class FireBaseStation {
             String userid = user.getUid();
 
             dbRef = FirebaseDatabase.getInstance().getReference("users/"+userid);
-            
-
-
-
+            dbRef.child("loggedin").setValue("true");
 
     }
 
@@ -88,7 +85,7 @@ public class FireBaseStation {
             @Override
             public void onResult(@NonNull Status status){
                 //displayBoard.setText("Signed Out");
-                lastUserRef.setValue("false");
+                dbRef.child("loggedin").setValue("false");
                 FirebaseAuth.getInstance().signOut();
             }
         });
@@ -96,6 +93,9 @@ public class FireBaseStation {
 
     public FirebaseUser getUser(){
         return user;
+    }
+    public DatabaseReference getDbRef(){
+        return dbRef;
     }
     public FirebaseAuth getAuth(){
         return mAuth;
