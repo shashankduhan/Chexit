@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/add_user_title"
+        android:textColor="@color/Labels"
+        android:text="Add new visitor"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/name_in"
+        android:layout_alignStart="@+id/name_in"
+        android:layout_marginTop="33dp"
+        android:textSize="17dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Visitor"
+        android:id="@+id/add_user_final"
+        android:layout_alignLeft="@+id/add_user_title"
+        android:layout_alignStart="@+id/add_user_title"
+        android:layout_marginTop="151dp"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/name_in"
+
+        android:layout_below="@+id/add_user_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:textColor="#ffffff"
+        android:hint="Full Name" />
+
+</RelativeLayout>

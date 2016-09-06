@@ -85,8 +85,12 @@ public class FireBaseStation {
             @Override
             public void onResult(@NonNull Status status){
                 //displayBoard.setText("Signed Out");
+                for(User user: Datable.usersBackup){
+                    dbRef.child("users/"+user.getId()+"/status").setValue(false);
+                }
                 dbRef.child("loggedin").setValue("false");
                 FirebaseAuth.getInstance().signOut();
+
             }
         });
     }

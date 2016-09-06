@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.intrface.chexit">
 
-    <uses-sdk tools:overrideLibrary="com.facebook.shimmer" />
+    <uses-sdk tools:overrideLibrary="com.facebook.shimmer, com.firebase.ui" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -14,7 +14,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+
+        >
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

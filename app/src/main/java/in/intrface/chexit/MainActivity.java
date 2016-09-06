@@ -22,9 +22,12 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity{
@@ -100,12 +103,17 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public void onStop() {
         super.onStop();
+
+
+
+
         if(loggedin){
-            //mrFirebase.lastUserRef.setValue("false");
+
         }
         if (mrFirebase.getAuthStateListener() != null) {
             mrFirebase.getAuth().removeAuthStateListener(mrFirebase.getAuthStateListener());
         }
+
 
     }
     @Override
@@ -168,6 +176,15 @@ public class MainActivity extends AppCompatActivity{
                         }
                     }
                 });
+    }
+
+    public void signOut(){
+
+        loggedin = false;
+        signOutButton.setVisibility(View.INVISIBLE);
+        googleSignIn.setVisibility(View.VISIBLE);
+        displayBoard.setText("Chexit");
+
     }
 
     //OUR BASIC FUNCTIONS.....

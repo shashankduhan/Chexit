@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:id="@+id/user_box">
+    android:id="@+id/user_box"
+    android:paddingTop="32dp"
+    android:background="#3b445e">
 
 
 
@@ -14,6 +15,19 @@
         android:text="Name"
         android:id="@+id/user_fullname"
 
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/chexitLogo"/>
+        android:textColor="@color/chexitLogo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignParentTop="true" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#282f41"
+        android:id="@+id/end_line_user_box"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="32dp" />
 </RelativeLayout>

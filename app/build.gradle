@@ -32,6 +32,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.0'
     compile 'com.android.support:palette-v7:24.2.0'
     compile 'com.android.support:support-v4:24.2.0'
+    compile 'com.firebase:firebase-client-android:2.3.1'
+    compile 'com.firebaseui:firebase-ui:0.3.1'
 }
 
 

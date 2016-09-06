@@ -30,6 +30,7 @@ public class SocketSingh implements View.OnClickListener {
                 break;
             case R.id.sign_out:
                 fireBaseGuy.signOut();
+                mainActivityGuy.signOut();
                 break;
 
         }

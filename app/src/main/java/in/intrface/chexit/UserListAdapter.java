@@ -1,6 +1,7 @@
 package in.intrface.chexit;
 
 import android.content.Context;
+import android.support.annotation.CallSuper;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,35 +15,41 @@ import java.util.ArrayList;
 public class UserListAdapter extends RecyclerView.Adapter<UserBox>{
 
     private ArrayList<User> mUserList;
-    private Context mContext;
     private int mFocusedItem = 0;
+    protected User user;
+    protected Datable activity;
+    protected View.OnClickListener clickListener;
 
-    public UserListAdapter(Context context,ArrayList<User> userlist){
-        mContext = context;
+    public UserListAdapter(ArrayList<User> userlist, Datable datable){
         mUserList = userlist;
+        activity = datable;
     }
 
     @Override
     public UserBox onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_box, null);
-        UserBox box = new UserBox(v);
-        box.userbox.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                System.out.println("YOYOYO");
-            }
-        });
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_box, parent, false);
+        UserBox box = new UserBox(v, mUserList);
 
         return box;
     }
 
     @Override
     public void onBindViewHolder(UserBox holder, int position) {
-        User user = mUserList.get(position);
+
+        user = mUserList.get(position);
+        clickListener = new UserBoxClickListener(mUserList.get(position), activity);
         holder.getLayoutPosition();
-        holder.username.setText(user.getName());
+        holder.setName(user.getName());
+        holder.getUserBox().setOnClickListener(clickListener);
+        String color;
+        System.out.println(mUserList.get(position).getStatus() + " " + mUserList.get(position).getName());
+        if(mUserList.get(position).getStatus()){color = "5b7433";}
+        else{color = "3b445e";}
+
+        holder.setBackgroundColor(color);
+
+        System.out.println(user.getId());
 
     }
 
@@ -55,4 +62,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserBox>{
     public void refresh(){
         notifyDataSetChanged();
     }
+
+
 }
