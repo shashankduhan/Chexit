@@ -1,14 +1,10 @@
 package in.intrface.chexit;
 
-import android.app.Application;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 
-import android.os.Bundle;
-import android.view.View;
+
 
 
 import com.google.android.gms.auth.api.Auth;
@@ -52,7 +48,7 @@ public class GoogleSignIn implements GoogleApiClient.OnConnectionFailedListener{
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         //If some error occured from google
-        Log.d(TAG, "onConnectioFailed:" + connectionResult);
+        //Log.d(TAG, "onConnectioFailed:" + connectionResult);
     }
 
     public void googleSignIn(){
@@ -62,7 +58,7 @@ public class GoogleSignIn implements GoogleApiClient.OnConnectionFailedListener{
 
 
     public void handleSignInResult(GoogleSignInResult result){
-        Log.d(TAG, "handleSignInResult:"+result.isSuccess());
+        //Log.d(TAG, "handleSignInResult:"+result.isSuccess());
 
         if(result.isSuccess()){
             //Signed in successfully, show authenticated UI.

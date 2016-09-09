@@ -19,7 +19,7 @@ public class UserBoxClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Datable.selectedUser = user;
-        System.out.println(Datable.selectedUser.getName());
+        //System.out.println(Datable.selectedUser.getName());
         datable.showDialog("checkin");
 
     }

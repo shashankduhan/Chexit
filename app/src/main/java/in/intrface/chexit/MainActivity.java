@@ -2,7 +2,6 @@ package in.intrface.chexit;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,13 +21,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.*;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 
 public class MainActivity extends AppCompatActivity{
     SignInButton googleSignIn;
@@ -146,7 +139,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d("frB Auth:", "firebaseAuthWithGoogle:" + acct.getId());
+        //Log.d("frB Auth:", "firebaseAuthWithGoogle:" + acct.getId());
         // [START_EXCLUDE silent]
         //showProgressDialog();
         // [END_EXCLUDE]
@@ -162,7 +155,7 @@ public class MainActivity extends AppCompatActivity{
 
                         if (!task.isSuccessful()) {
 
-                            Log.w("FrB Auth:", "signInWithCredential", task.getException());
+                            //Log.w("FrB Auth:", "signInWithCredential", task.getException());
                             Toast.makeText( MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                         }else {
@@ -193,7 +186,7 @@ public class MainActivity extends AppCompatActivity{
         if(loggedin){
             Intent cameraPad = new Intent(MainActivity.this, CameraActivity.class);
             startActivity(cameraPad);
-            Log.d("Camera", "Clicked");
+            //Log.d("Camera", "Clicked");
         }
     }
 

@@ -49,6 +49,7 @@ public class Datable extends AppCompatActivity {
     private UserListAdapter userListAdapter;
     private int mStackLevel = 0;
     public static User selectedUser;
+    public boolean retrieve = false;
 
 
     @Override
@@ -91,7 +92,7 @@ public class Datable extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot data, String s) {
                 User updatedUserData = data.getValue(User.class);
-                System.out.println(updatedUserData.getName());
+                //System.out.println(updatedUserData.getName());
                 int i = 0;
                 for(User usr: users){
                     if(usr.getId().matches(updatedUserData.getId())){
@@ -105,7 +106,7 @@ public class Datable extends AppCompatActivity {
             @Override
             public void onChildRemoved(DataSnapshot data) {
                 User updatedUserData = data.getValue(User.class);
-                System.out.println(updatedUserData.getName());
+                //System.out.println(updatedUserData.getName());
                 int i = 0;
                 for(User usr: users){
                     if(usr.getId().matches(updatedUserData.getId())){
@@ -141,6 +142,14 @@ public class Datable extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
 
+        if(retrieve){
+            for (User user : Datable.usersBackup) {
+                System.out.println(user.getName());
+                if (user.getStatus()) {
+                    FireBaseStation.dbRef.child("users/" + user.getId() + "/status").setValue((boolean) true);
+                }
+            }
+        }
         dbref.child("users").orderByChild("key").addChildEventListener(newUserListner);
 
 
@@ -151,6 +160,13 @@ public class Datable extends AppCompatActivity {
         super.onStop();
         dbref.child("users").orderByChild("name").removeEventListener(newUserListner);
         usersBackup = (ArrayList<User>)users.clone();
+        for (User user : Datable.usersBackup) {
+            System.out.println(user.getName());
+            if (user.getStatus()) {
+                FireBaseStation.dbRef.child("users/" + user.getId() + "/status").setValue((boolean) false);
+            }
+        }
+        retrieve = true;
         users.clear();
 
 

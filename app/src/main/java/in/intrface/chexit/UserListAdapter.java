@@ -43,13 +43,13 @@ public class UserListAdapter extends RecyclerView.Adapter<UserBox>{
         holder.setName(user.getName());
         holder.getUserBox().setOnClickListener(clickListener);
         String color;
-        System.out.println(mUserList.get(position).getStatus() + " " + mUserList.get(position).getName());
+        //System.out.println(mUserList.get(position).getStatus() + " " + mUserList.get(position).getName());
         if(mUserList.get(position).getStatus()){color = "5b7433";}
         else{color = "3b445e";}
 
         holder.setBackgroundColor(color);
 
-        System.out.println(user.getId());
+        //System.out.println(user.getId());
 
     }
 
